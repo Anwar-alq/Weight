@@ -1,0 +1,26 @@
+document.getElementById('bmi-form').addEventListener('submit', function(event) {
+    event.preventDefault();
+    
+    const weight = parseFloat(document.getElementById('weight').value);
+    const height = parseFloat(document.getElementById('height').value);
+    
+    if (!weight || !height) {
+        document.getElementById('result').textContent = 'يرجى إدخال الوزن والطول بشكل صحيح.';
+        return;
+    }
+    
+    const bmi = weight / (height * height);
+    let category = '';
+    
+    if (bmi < 18.5) {
+        category = 'نحافة';
+    } else if (bmi < 24.9) {
+        category = 'طبيعي';
+    } else if (bmi < 29.9) {
+        category = 'زيادة وزن';
+    } else {
+        category = 'سمنة';
+    }
+    
+    document.getElementById('result').textContent = `مؤشر كتلة الجسم: ${bmi.toFixed(2)} (${category})`;
+});
